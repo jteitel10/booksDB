@@ -17,6 +17,7 @@ def insert(title, author, year, isbn):
                 (title, author, year, isbn))
     conn.commit()
     conn.close()
+    view()
 
 
 def view():
@@ -28,6 +29,31 @@ def view():
     return rows
 
 
+def search(title="", author="", year="", isbn=""):
+    conn = sqlite3.connect("books.db")
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT * FROM book WHERE title=? OR author=? OR year=? OR isbn=?", (title, author, year, isbn))
+    rows = cur.fetchall()
+    conn.close()
+    return rows
+
+
+def delete(id):
+    conn = sqlite3.connect("books.db")
+    cur = conn.cursor()
+    cur.execute("DELETE FROM book WHERE id=?", (id,))
+    conn.commit()
+    conn.close()
+
+
+def update(id, title="", author="", year="", isbn=""):
+    conn = sqlite3.connect("books.db")
+    cur = conn.cursor()
+    cur.execute("UPDATE book SET title=?, author=?, year=?, isbn=? WHERE id=?",
+                (id, title, author, year, isbn))
+    conn.commit()
+    conn.close()
+
+
 connect()
-insert("The sea", "John Tablet", 1918, 9131231312)
-print(view())
