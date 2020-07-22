@@ -51,7 +51,7 @@ def update(id, title="", author="", year="", isbn=""):
     conn = sqlite3.connect("books.db")
     cur = conn.cursor()
     cur.execute("UPDATE book SET title=?, author=?, year=?, isbn=? WHERE id=?",
-                (id, title, author, year, isbn))
+                (title, author, year, isbn, id))
     conn.commit()
     conn.close()
 
