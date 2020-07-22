@@ -1,3 +1,7 @@
 # booksDB
 
-Created an application allows users to interact with a book shops database through the use of a graphical user interface.
+Created an application that allows users to interact with a book shops database through the use of a graphical user interface.
+
+Users will be able to:
+* Search / View / Update / Delete Book Information from the database 
+* 
